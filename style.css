@@ -1,0 +1,54 @@
+
+        /* Custom styles based on style-guide.md */
+        :root {
+            --neutral-900: hsl(243, 96%, 9%);
+            --neutral-0: hsl(0, 0%, 100%);
+            --blue-500: hsl(233, 67%, 56%);
+            --blue-700: hsl(248, 70%, 36%);
+        }
+        body {
+            background-color: var(--neutral-900);
+            color: var(--neutral-0);
+            font-family: 'DM Sans', sans-serif;
+            font-size: 18px;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 20px;
+        }
+        h1, h2, h3 {
+            font-family: 'Bricolage Grotesque', sans-serif;
+        }
+        .main-card {
+            background: var(--blue-700);
+            border-radius: 20px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+            transition: all 0.3s ease;
+        }
+        .search-button {
+            background-color: var(--blue-500);
+            transition: background-color 0.2s;
+        }
+        .search-button:hover {
+            background-color: hsl(233, 67%, 66%);
+        }
+        .hourly-item, .daily-item {
+            transition: background-color 0.2s;
+        }
+        .hourly-item:hover, .daily-item:hover {
+            background-color: hsl(243, 27%, 20%); /* Neutral 800 */
+        }
+        .current-weather-bg {
+            background: linear-gradient(135deg, var(--blue-700), hsl(233, 67%, 40%));
+        }
+        /* Style for the search icon (placeholder) */
+        .search-icon::before {
+            content: "\1F50D"; /* Magnifying glass emoji/icon */
+        }
+        /* Style for the sun icon (placeholder) */
+        .sun-icon::before {
+            content: "\2600\FE0F"; /* Sun icon emoji */
+            font-size: 3rem;
+            line-height: 1;
+        }

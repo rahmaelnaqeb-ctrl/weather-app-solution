@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Now</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Load Google Fonts (DM Sans and Bricolage Grotesque) -->
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,600&display=swap" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+</head>
+<body class="bg-[hsl(243,96%,9%)] min-h-screen pt-10">
+
+    <div class="w-full max-w-5xl p-6 bg-[hsl(243,27%,20%)] rounded-xl shadow-2xl">
+        <!-- Header and Unit Switch -->
+        <header class="flex justify-between items-center pb-8">
+            <h2 class="text-xl font-bold flex items-center gap-2">
+                <span class="text-[hsl(28,100%,52%)]">☀️</span> Weather Now
+            </h2>
+            <div id="unit-switcher" class="relative">
+                <select id="unit-select" class="bg-transparent border-none text-white cursor-pointer p-2 rounded-lg focus:outline-none appearance-none pr-6">
+                    <option value="metric" class="bg-[hsl(243,27%,20%)] text-white">Metric (°C, km/h)</option>
+                    <option value="imperial" class="bg-[hsl(243,27%,20%)] text-white">Imperial (°F, mph)</option>
+                </select>
+                <span class="absolute right-0 top-1/2 -translate-y-1/2 pointer-events-none">▼</span>
+            </div>
+        </header>
+
+        <!-- Main Title -->
+        <h1 class="text-4xl sm:text-5xl font-extrabold text-center mb-8">How's the sky looking today?</h1>
+
+        <!-- Search Bar -->
+        <div class="flex justify-center mb-10">
+            <div class="flex w-full max-w-lg rounded-xl overflow-hidden">
+                <input type="text" id="city-input" placeholder="Search for a city, e.g., New York" class="flex-grow p-4 text-black text-lg focus:outline-none focus:ring-2 focus:ring-[hsl(233,67%,56%)] rounded-l-xl" required>
+                <button id="search-button" class="search-button px-6 text-white text-lg font-semibold rounded-r-xl hover:shadow-lg transition-transform transform hover:scale-105">
+                    Search
+                </button>
+            </div>
+        </div>
+        
+        <!-- Main Content Grid -->
+        <div id="weather-content" class="grid grid-cols-1 lg:grid-cols-3 gap-8 opacity-0 transition-opacity duration-500">
+            
+            <!-- Left Column: Current Weather and Details -->
+            <div class="lg:col-span-2 space-y-8">
+                
+                <!-- Current Weather Card -->
+                <div class="current-weather-bg p-8 rounded-xl flex flex-col md:flex-row justify-between items-center text-white min-h-[200px]">
+                    <div id="current-location-info" class="text-left mb-6 md:mb-0">
+                        <p class="text-3xl font-bold" id="current-city">Berlin, Germany</p>
+                        <p class="text-base font-light" id="current-date">Tuesday, Aug 5, 2025</p>
+                        <p class="text-lg font-medium mt-2" id="current-description">Clear Sky</p>
+                    </div>
+                    <div id="current-temperature" class="flex items-center gap-4">
+                        <span id="weather-icon" class="sun-icon text-yellow-300"></span>
+                        <p class="text-7xl sm:text-8xl font-bold" id="main-temp">20°</p>
+                    </div>
+                </div>
+
+                <!-- Detail Metrics -->
+                <div id="detail-metrics" class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+                    <!-- Metric Card Template -->
+                    <div class="p-4 rounded-xl bg-[hsl(243,23%,24%)]">
+                        <p class="text-sm text-[hsl(240,6%,70%)]">Feels like</p>
+                        <p class="text-2xl font-bold pt-1" id="feels-like-temp">18°</p>
+                    </div>
+                    <div class="p-4 rounded-xl bg-[hsl(243,23%,24%)]">
+                        <p class="text-sm text-[hsl(240,6%,70%)]">Humidity</p>
+                        <p class="text-2xl font-bold pt-1" id="humidity-value">46%</p>
+                    </div>
+                    <div class="p-4 rounded-xl bg-[hsl(243,23%,24%)]">
+                        <p class="text-sm text-[hsl(240,6%,70%)]">Wind</p>
+                        <p class="text-2xl font-bold pt-1" id="wind-speed">14 km/h</p>
+                    </div>
+                    <div class="p-4 rounded-xl bg-[hsl(243,23%,24%)]">
+                        <p class="text-sm text-[hsl(240,6%,70%)]">Precipitation</p>
+                        <p class="text-2xl font-bold pt-1" id="precipitation-value">0 mm</p>
+                    </div>
+                </div>
+
+                <!-- Daily Forecast -->
+                <div class="p-6 rounded-xl bg-[hsl(243,23%,24%)]">
+                    <h3 class="text-xl font-bold mb-4">Daily forecast</h3>
+                    <div id="daily-forecast" class="grid grid-cols-4 sm:grid-cols-7 gap-3 text-center">
+                        <!-- Daily Item Template (Example) -->
+                        <div class="daily-item p-3 rounded-xl hover:bg-[hsl(243,27%,20%)] cursor-pointer transition">
+                            <p class="text-sm">Tue</p>
+                            <span class="text-lg pt-1">🌤️</span>
+                            <p class="text-base font-bold pt-1">20°</p>
+                            <p class="text-xs text-[hsl(240,6%,70%)]">14°</p>
+                        </div>
+                        <div class="daily-item p-3 rounded-xl hover:bg-[hsl(243,27%,20%)] cursor-pointer transition">
+                            <p class="text-sm">Wed</p>
+                            <span class="text-lg pt-1">☁️</span>
+                            <p class="text-base font-bold pt-1">21°</p>
+                            <p class="text-xs text-[hsl(240,6%,70%)]">15°</p>
+                        </div>
+                        <!-- More items will be generated by JS -->
+                    </div>
+                </div>
+                
+            </div>
+            
+            <!-- Right Column: Hourly Forecast -->
+            <div class="lg:col-span-1 p-6 rounded-xl bg-[hsl(243,23%,24%)]">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="text-xl font-bold">Hourly forecast</h3>
+                    <select class="bg-[hsl(243,27%,20%)] text-white p-2 rounded-lg text-sm focus:outline-none">
+                        <option>Tuesday</option>
+                        <option>Wednesday</option>
+                    </select>
+                </div>
+                
+                <div id="hourly-forecast" class="space-y-2">
+                    <!-- Hourly Item Template (Example) -->
+                    <div class="hourly-item flex justify-between items-center p-3 rounded-xl cursor-pointer">
+                        <p>3 PM</p>
+                        <span class="text-lg">🌤️</span>
+                        <p class="font-semibold">20°</p>
+                    </div>
+                    <div class="hourly-item flex justify-between items-center p-3 rounded-xl cursor-pointer">
+                        <p>4 PM</p>
+                        <span class="text-lg">☁️</span>
+                        <p class="font-semibold">20°</p>
+                    </div>
+                    <div class="hourly-item flex justify-between items-center p-3 rounded-xl cursor-pointer">
+                        <p>5 PM</p>
+                        <span class="text-lg">☀️</span>
+                        <p class="font-semibold">20°</p>
+                    </div>
+                    <!-- More items will be generated by JS -->
+                </div>
+            </div>
+
+        </div> <!-- End of Main Content Grid -->
+        
+    </div>
+<script src="script.js"></script>
+</body>
+</html>
