@@ -22,7 +22,7 @@ Links
 
 Solution URL: [https://github.com/rahmaelnaqeb-ctrl/weather-app-solution.git]
 
-Live Site URL: [Add your live site URL here]
+Live Site URL: (https://weather-app-solution-amber.vercel.app/)
 
 My Process
 
