@@ -20,7 +20,7 @@ Design: Full dark-mode responsiveness based on the provided style guide.
 
 Links
 
-Solution URL: [Add your solution repository URL here]
+Solution URL: [https://github.com/rahmaelnaqeb-ctrl/weather-app-solution.git]
 
 Live Site URL: [Add your live site URL here]
 
