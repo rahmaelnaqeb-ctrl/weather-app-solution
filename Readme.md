@@ -46,5 +46,5 @@ Dynamically rendered detailed forecast cards and lists based on API responses.
 
 Author
 
-Frontend Mentor - @yourusername
+Frontend Mentor - @rahmaelnaqeb-ctrl
 
